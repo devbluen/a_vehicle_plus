@@ -7,6 +7,13 @@ forward OnVehicleConnect(vehicleid);
 forward OnVehicleDisconnect(vehicleid);
 forward OnVehicleColorUpdate(vehicleid, color1, color2);
 forward OnVehiclePlateUpdate(vehicleid, const newplate[]);
+            //
+forward OnVehicleBonnetUpdate(vehicleid, bool:status);  // Capô
+forward OnVehicleBootUpdate(vehicleid, bool:status);  // Porta Malas
+forward OnVehicleEngineUpdate(vehicleid, bool:status);
+forward OnVehicleDoorsUpdate(vehicleid, bool:status);
+forward OnVehicleLightsUpdate(vehicleid, bool:status);
+forward OnVehicleAlarmUpdate(vehicleid, bool:status);
 
 static enum E_VEHICLE_PLUS {
     E_VEHICLE_PLATE[MAX_VEHICLE_PLATE + 1],
@@ -147,6 +154,7 @@ stock SetVehicleEngine(vehicleid, bool:status) {
         return;
 
     e_VehiclePlus[vehicleid][E_VEHICLE_ENGINE] = status;
+    CallLocalFunction("OnVehicleEngineUpdate", "ii", vehicleid, status);
     SetVehicleFixParams(vehicleid);  
 }
 
@@ -156,6 +164,7 @@ stock SetVehicleDoorLock(vehicleid, bool:status) {
         return;
 
     e_VehiclePlus[vehicleid][E_VEHICLE_DOORS] = status;
+    CallLocalFunction("OnVehicleDoorsUpdate", "ii", vehicleid, status);
     SetVehicleFixParams(vehicleid);
 }
 
@@ -165,6 +174,7 @@ stock SetVehicleLights(vehicleid, bool:status) {
         return;
 
     e_VehiclePlus[vehicleid][E_VEHICLE_LIGHTS] = status;
+    CallLocalFunction("OnVehicleLightsUpdate", "ii", vehicleid, status);
     SetVehicleFixParams(vehicleid);    
 }
 
@@ -174,6 +184,7 @@ stock SetVehicleAlarm(vehicleid, bool:status) {
         return;
 
     e_VehiclePlus[vehicleid][E_VEHICLE_ALARM] = status;
+    CallLocalFunction("OnVehicleAlarmUpdate", "ii", vehicleid, status);
     SetVehicleFixParams(vehicleid);       
 }
 
@@ -183,6 +194,7 @@ stock SetVehicleBonnet(vehicleid, bool:status) {
         return;
 
     e_VehiclePlus[vehicleid][E_VEHICLE_BONNET] = status;
+    CallLocalFunction("OnVehicleBonnetUpdate", "ii", vehicleid, status);
     SetVehicleFixParams(vehicleid);     
 }
 
@@ -192,6 +204,7 @@ stock SetVehicleBoot(vehicleid, bool:status) {
         return;
 
     e_VehiclePlus[vehicleid][E_VEHICLE_BOOT] = status;
+    CallLocalFunction("OnVehicleBootUpdate", "ii", vehicleid, status);
     SetVehicleFixParams(vehicleid);     
 }
 
