@@ -49,7 +49,7 @@ static e_VehiclePlus[MAX_VEHICLES][E_VEHICLE_PLUS];
 */
 
 public OnVehicleStreamIn(vehicleid, forplayerid) {
-    SetVehicleFixParams(forplayerid, vehicleid);
+    SetVehicleFixParams(vehicleid, forplayerid);
 
     #if defined HOOK_OnVehicleStreamIn
        return HOOK_OnVehicleStreamIn(vehicleid, forplayerid);
